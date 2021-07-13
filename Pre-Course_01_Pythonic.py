@@ -36,5 +36,41 @@ ex2 = ex2 *2
 from functools import reduce
 
 print(reduce(lambda x, y : x+y , [1,2,3,4,5]))
+#1+2,3+3,6+4,10+5를 수행.
+
+#iterable한 객체는 iter와 next로 이루어짐. iter로 iterator object로 선언, next로 다음 원소를 가져옴.
+
+#generator: iterable object를 특수한 형태로 사용. yield를 사용해 한번에 하나의 원소만 반환. 
+#[]대신 ()를 사용하여 표현
+#generator는 iterator에 비해 훨씬 작은 메모리 용량 사용. 최적활르 위해 알아둘것. 
+gen_ex = (n*n for n in range(500)) #이게
+list_ex = [n*n for n in range(500)] #이것보다 메모리 용량 선에서 효율적.
+#list 타입의 데이터를 반환해주는 함수는 generator로 만들어라. 중간 과정에서 loop이 중단될 수 있을때. 
+#큰 데이터를 처리할때는 제너레이터가 유용. 파일 데이터를 처리할때도 상당히 유용하다. 
 
 
+#함수에 입력되는 arguments:
+#1.keyword Args
+#2.Default Args
+#3.Variable Length Args
+a = "me"
+b = "hehe"
+def printy(first,second):
+    print("hello {1}, it's {0}".format(b,a))
+printy(first="hehe",second="doh")
+#파라미터의 변수명을 사용, arguments를 넘김
+def printy2(first,second="default"):#디폴트로 인자에 들어갈 값을 정해놓는다.
+    print("hello {1}, it's {0}".format(b,a))
+
+#함수의 parameter가 정해지지 않았을때. 다항방정식/마트물건계산?
+#개수가 정해지지 않은 변수를 함수의 parameter로 사용하는 법.
+#Keyword arguments와 함께, argument 추가가 가능.
+# * 기호 활용, 입력된 값은 tuple type!
+#가변 인자는 오직 한개 마지막 parameter 위치에 사용 가능.
+
+def aster_test(a,b,*args):
+    return a+b+sum(*args)
+
+a = aster_test(1,2,(3,4,5))
+
+#키워드 가변인자. dict type으로 사용 가능하다. 
