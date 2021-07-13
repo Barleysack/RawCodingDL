@@ -212,7 +212,7 @@ def backprop_postproc(G_loss, diff):                     #순전파 역순으로
 
 
 def eval_accuracy(output, y):
-    mdiff = np.mean(np.abs((output - y)/y)) #정답과 오차의 비율을 오류율로 보고 1에서 오류율 평균을 뺀 값으로 정확도를 정의.
+    mdiff = np.mean(np.abs((output - y)/y))              #정답과 오차의 비율을 오류율로 보고 1에서 오류율 평균을 뺀 값으로 정확도를 정의.
     return 1 - mdiff
 
 
@@ -222,8 +222,8 @@ def eval_accuracy(output, y):
 
 
 
-def backprop_postproc_oneline(G_loss, diff):  # backprop_postproc() 대신 사용 가능
-    return 2 * diff / np.prod(diff.shape)     #위의 함수를 간단히 만들면 이리 된다. 
+def backprop_postproc_oneline(G_loss, diff):             # backprop_postproc() 대신 사용 가능
+    return 2 * diff / np.prod(diff.shape)                #위의 함수를 간단히 만들면 이리 된다. 
 
 
 
