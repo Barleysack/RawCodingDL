@@ -3,7 +3,7 @@ import csv
 import time
 from numpy.core.fromnumeric import transpose
 from numpy.random import shuffle
-
+import os
 np.random.seed(7993)
 
 def randomize(): np.random.seed(time.time())
@@ -239,6 +239,11 @@ def backprop_postproc_oneline(G_loss, diff):             # backprop_postproc() �
 #=================================================================================================================
 
 
+
 #실행.
 
 abalone_exec()
+
+
+
+
