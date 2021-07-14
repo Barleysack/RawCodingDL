@@ -80,6 +80,8 @@ def arrange_data(mb_size):                              #이거 아까 그 전�
     global shuffle_map
     global test_begin_idx
     ishape=np.shape(data[0])[0]
+    k=data.shape[0]
+    print(k)
     shuffle_map = np.arange(data.shape[0])
     np.random.shuffle(shuffle_map)
     step_count = int(data.shape[0] * 0.8) // mb_size
