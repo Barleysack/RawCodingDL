@@ -1,8 +1,8 @@
 import numpy as np
 import csv
 import time
-
 from numpy.core.fromnumeric import transpose
+from numpy.random import shuffle
 
 np.random.seed(7993)
 
@@ -75,10 +75,17 @@ def train_and_test(epoch_count,mb_size, report):
 #=================================================================================================================
 
 def arrange_data(mb_size):                              #이거 아까 그 전처리 함수였지? 
-    global data, shuffle_map, test_begin_idx 
-    shuffle_map = np.arange(np.shape(data[0]))              #데이터 수 만큼의 일련번호를 발생시킨 후 
-    np.random.shuffle(shuffle_map)                      #무작위로 순서를 섞는다. 이 shuffle_map은 get_train_data와 get_test_data에서 사용된다. 
-    step_count = int(np.shape(data[0]) * 0.8) // mb_size 
+    """얘가 뭔가 문제가 있는 것 같은데... """
+    global data 
+    global shuffle_map
+    global test_begin_idx
+    ishape=np.shape(data[0])[0]
+    shuffle_map = np.arange(data.shape[0])
+    np.random.shuffle(shuffle_map)
+    step_count = int(data.shape[0] * 0.8) // mb_size
+                                                        #데이터 수 만큼의 일련번호를 발생시킨 후 
+                                                        #무작위로 순서를 섞는다. 이 shuffle_map은 get_train_data와 get_test_data에서 사용된다. 
+                                              
     test_begin_idx = step_count * mb_size
                                                         #또한 테스트데이터와 검증데이터의 경계를 인덱스로 저장한 후 에포크 학습에 필요한 미니배치 처리 스텝수를 반환한다.  
 
@@ -191,7 +198,7 @@ def forward_postproc(output, y):                         #단층 퍼셉트론 �
 
 
 def backprop_postproc(G_loss, diff):                     #순전파 역순으로 G_output을 구해 반환. 
-    shape = np.shape(diff)                                   #G_Loss값(초기 1) 로부터 평균, 제곱, 오차 연산에 대한 역전파 처리를 수행.
+    shape = diff.shape                                   #G_Loss값(초기 1) 로부터 평균, 제곱, 오차 연산에 대한 역전파 처리를 수행.
     g_loss_square = np.ones(shape) / np.prod(shape)      #각 단계간 부분 기울기를 구해두고 이후 손실 기울기의 연쇄적 계산에 사용.
     g_square_diff = 2 * diff                             #각 단계간 부분 기울기를 구해두고 이후 손실 기울기의 연쇄적 계산에 사용.
     g_diff_output = 1                                    #각 단계간 부분 기울기를 구해두고 이후 손실 기울기의 연쇄적 계산에 사용.
@@ -223,8 +230,13 @@ def eval_accuracy(output, y):
 
 
 def backprop_postproc_oneline(G_loss, diff):             # backprop_postproc() 대신 사용 가능
-    return 2 * diff / np.prod(np.shape(diff))                #위의 함수를 간단히 만들면 이리 된다. 
+    return 2 * diff / np.prod(diff.shape)                #위의 함수를 간단히 만들면 이리 된다. 
 
 
 
 #=================================================================================================================
+
+
+#실행.
+
+abalone_exec()
