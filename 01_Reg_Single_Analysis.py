@@ -191,7 +191,7 @@ def forward_postproc(output, y):                         #단층 퍼셉트론 �
 
 
 def backprop_postproc(G_loss, diff):                     #순전파 역순으로 G_output을 구해 반환. 
-    shape = diff.shape                                   #G_Loss값(초기 1) 로부터 평균, 제곱, 오차 연산에 대한 역전파 처리를 수행.
+    shape = np.shape(diff)                                   #G_Loss값(초기 1) 로부터 평균, 제곱, 오차 연산에 대한 역전파 처리를 수행.
     g_loss_square = np.ones(shape) / np.prod(shape)      #각 단계간 부분 기울기를 구해두고 이후 손실 기울기의 연쇄적 계산에 사용.
     g_square_diff = 2 * diff                             #각 단계간 부분 기울기를 구해두고 이후 손실 기울기의 연쇄적 계산에 사용.
     g_diff_output = 1                                    #각 단계간 부분 기울기를 구해두고 이후 손실 기울기의 연쇄적 계산에 사용.
@@ -223,7 +223,7 @@ def eval_accuracy(output, y):
 
 
 def backprop_postproc_oneline(G_loss, diff):             # backprop_postproc() 대신 사용 가능
-    return 2 * diff / np.prod(diff.shape)                #위의 함수를 간단히 만들면 이리 된다. 
+    return 2 * diff / np.prod(np.shape(diff))                #위의 함수를 간단히 만들면 이리 된다. 
 
 
 
