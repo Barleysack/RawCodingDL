@@ -89,6 +89,8 @@ stream_hander = logging.StreamHandler()
 logger.addHandler(stream_hander)
 
 logger.setLevel(logging.DEBUG)
+#debug,info,warning,error,critical의 수준으로 나누어 지정이 가능하다.
+#본격적으로 
 logger.debug("틀렸잖아!")
 logger.info("확인해")
 logger.warning("조심해!")
