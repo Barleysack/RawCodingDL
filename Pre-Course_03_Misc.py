@@ -40,6 +40,11 @@ import pickle #pickle은 파이썬에 특화된 바이너리 파일.
 
 f = open("list.pickle", "wb")
 test = [1, 2, 3, 4, 5]
+
+
+
+
+
 pickle.dump(test, f)
 f.close()
 f = open("list.pickle", "rb")
