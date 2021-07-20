@@ -18,7 +18,7 @@ a = range(100)
 b = range(100)
 plt.plot(a,b)
 plt.show()
-#show의 순간 flush 되는것이다. flsuh란 철-푸덕 하고 그림이 그려진다고 생각하면 좋을 것 같다. 
+#show의 순간 flush 되는것이다. 메모리 플러쉬가 일어난다고 생각하자. 
 
 #Color: RGB의 값이 들어감. color도 되고 그냥 c로도 가능. 그냥 검색해서 컬러 잡아넣어도 적당하다 ㅋㅋ 
 #linestyle같은건 뭐 나중에 찾아보슈 
