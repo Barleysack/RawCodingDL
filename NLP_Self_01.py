@@ -1,7 +1,9 @@
 import pandas as pd
-import pandas_profiling as need
+import pandas_profiling
 import numpy as np
 import matplotlib.pyplot as plt
+
+from pandas_profiling.profile_report import ProfileReport
 
 loc = pd.Series([1000,20000,3030,9295],index=["a","b","c","d"]) #1차원 배열값 with index, 이것이 Series.
 
@@ -11,7 +13,7 @@ index = ['one', 'two', 'three']
 columns = ['A', 'B', 'C']
 
 df = pd.DataFrame(values, index=index, columns=columns)
-print(df)
+
 
 data = [
     ['1000', 'Steve', 90.72], 
@@ -22,7 +24,7 @@ data = [
     ['1005', 'Tony', 99.14],
 ]
 df = pd.DataFrame(data)
-print(df)
+
 
 #데이터프레임의 형성. 
 #이렇게 맹글어도 되고 저렇게 맹글어도 되고~ 알아두고 말자 
@@ -43,7 +45,7 @@ a = np.random.random((2,2))
 #np.arange. 알지?
 a = np.array(np.arange(30)).reshape((5,6))
 
-print(a)
+
 
 #numpy 슬라이싱 : 리스트랑 비스무리~합니다요 
 a = np.array([[1,2], [4,5], [7,8]])
@@ -72,14 +74,13 @@ c = np.dot(a, b) #행렬곱을 위한 닷프로세스.
 
 plt.title('test')
 plt.plot([1,2,3,4],[2,4,8,6])
-plt.show() #플로팅. 
+ 
 
 #축레이블 삽입 
 plt.title('test')
 plt.plot([1,2,3,4],[2,4,8,6])
 plt.xlabel('hours')
-plt.ylabel('score')
-plt.show()
+
 
 
 """좋은 머신러닝 결과를 위하여 데이터의 성격을 파악하는 과정 .
@@ -87,6 +88,4 @@ plt.show()
 EDA(Exploratory Data Analysis, 탐색적 데이터 분석)
 """
 data = pd.read_csv('./Datasets/spam.csv',encoding='latin1')
-rpt = data.profile_report()
-
-
+rpt = ProfileReport(data,title = "pandas")
