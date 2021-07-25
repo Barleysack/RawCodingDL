@@ -67,11 +67,11 @@ b = b / x # 각 요소에 대해서 나눗셈
 # b = np.divide(b, x)와 동일함
 
 
-a = np.array([[1,2],[3,4]])
-b = np.array([[5,6],[7,8]])
+a = np.array([[2,1],[1,2]])
+b = np.array([[2,1],[2,2]])
 
 c = np.dot(a, b) #행렬곱을 위한 닷프로세스.
-
+print(c)
 plt.title('test')
 plt.plot([1,2,3,4],[2,4,8,6])
  
@@ -89,3 +89,4 @@ EDA(Exploratory Data Analysis, 탐색적 데이터 분석)
 """
 data = pd.read_csv('./Datasets/spam.csv',encoding='latin1')
 rpt = ProfileReport(data,title = "pandas")
+#근데 어째 이게 잘 안되는구만...? #파이토치 프로파일링을 이용하는 편이 나을듯.
